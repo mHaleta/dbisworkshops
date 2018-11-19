@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wish list</title>
+</head>
+<body>
+        <form action = "http://127.0.0.1:5000/api/action/user_add_product/result" method = "POST">
+        {% for key, value in user_add_product.items() %}
+            <p>{{key}} <input type = "text" name = {{key}} value={{value}} /></p>
+        {% endfor %}
+            <p><input type = "submit" value = "submit" /></p>
+        </form>
+</body>
+</html>
