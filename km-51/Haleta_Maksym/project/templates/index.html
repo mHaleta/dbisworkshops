@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Main</title>
+        <style type="text/css">
+            .button {
+                border: 0;
+                cursor: pointer;
+                background-color: aliceblue;
+                font-size: 16pt;
+                color: black;
+
+            }
+
+            .button:hover {
+                background-color: aqua;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            table {
+                border-width: 1px;
+                border-style: solid;
+                margin-top: 20px;
+            }
+
+            .btnSubmit {
+                background-color: #009933;
+                font-size: 16px;
+                font-family: "Segoe UI";
+                cursor: pointer;
+                text-align: center;
+                margin-right: 20px;
+            }
+
+            .btnSubmit_disabled {
+                background-color: #009933;
+                opacity: 0.7;
+                font-size: 16px;
+                font-family: "Segoe UI";
+                text-align: center;
+                margin-right: 20px;
+                color: black;
+            }
+
+            .btnSubmit:hover {
+                background-color: #00cc66;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1 align="center">Реклама товарів</h1>
+        </header>
+        <div style="padding-bottom: 15px" align="center">
+            <a href="/main"><button class="button", type="button">Головна</button></a>
+            <a href="/search"><button class="button", type="button">Пошук</button></a>
+            <a href="/price_tracking"><button class="button">Відслідковування ціни</button></a>
+            <a href="/profile"><button class="button", type="button">Профіль</button></a>
+            <a href="/logout"><button class="button", type="button">Вихід</button></a>
+        </div>
+        {% if length == 0 %}
+            <p style="font-size: 14pt" align="center">Не додано жодного товару на рекламування</p>
+        {% else %}
+            <form method="POST" action="/main">
+                <table cellpadding="7" align="center" width="800px">
+                    <tr>
+                        <th>ID</th>
+                        <th>Дата</th>
+                        <th>Постачальник</th>
+                        <th>Продукт</th>
+                        <th>Ціна (UAH)</th>
+                        <th>Кількість</th>
+                        <th>Price tracking</th>
+                    </tr>
+                    {%  for row, iter in zipped %}
+                    <tr>
+                        {% for col in row %}
+                            <td>{{ col }}</td>
+                        {% endfor %}
+                        <td align="center">
+                            {% if login == row[2] %}
+                                <input class="btnSubmit_disabled" disabled type="submit" value="Add" name="{{ iter }}">
+                            {% else %}
+                                <input class="btnSubmit" type="submit" value="Add" name="{{ iter }}">
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </form>
+        {% endif %}
+    </body>
+</html>

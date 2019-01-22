@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Редагування користувача</title>
+        <style type="text/css">
+            .button {
+                border: 0;
+                cursor: pointer;
+                background-color: aliceblue;
+                font-size: 16pt;
+                color: black;
+
+            }
+
+            .button:hover {
+                background-color: aqua;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            .btnSubmit {
+                background-color: #009933;
+                font-size: 16px;
+                font-family: "Segoe UI";
+                cursor: pointer;
+                text-align: center;
+                margin-right: 20px;
+            }
+
+            .btnSubmit:hover {
+                background-color: #00cc66;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1 align="center">Реклама товарів</h1>
+        </header>
+        <div style="padding-bottom: 15px" align="center">
+            <a href="/main"><button class="button", type="button">Головна</button></a>
+            <a href="/search"><button class="button", type="button">Пошук</button></a>
+            <a href="/price_tracking"><button class="button">Відслідковування ціни</button></a>
+            <a href="/profile"><button class="button", type="button">Профіль</button></a>
+            <a href="/logout"><button class="button", type="button">Вихід</button></a>
+        </div>
+        <div style="padding-top: 20px" align="center">
+            <form action="/profile/edit_profile" method="POST">
+                {{ form.hidden_tag() }}
+                <div style="padding-bottom: 10px">
+                        <p style="font-size: 20px; font-family: 'Segoe Print'" align="center">Edit Profile</p>
+                </div>
+                <div style="padding-bottom: 20px">
+                    {% for message in get_flashed_messages() %}
+                    {% for msg in message.values() %}
+                        <div class="flash">{{ msg[0] }}</div>
+                    {% endfor %}
+                {% endfor %}
+                </div>
+                <div style="padding-bottom: 20px">
+                    {{ form.name(value=row[0][0]) }}
+                </div>
+                <div style="padding-bottom: 20px">
+                    {{ form.surname(value=row[0][1]) }}
+                </div>
+                <div style="padding-bottom: 20px">
+                    {{ form.email(value=row[0][2]) }}
+                </div>
+                <div style="padding-bottom: 20px">
+                    {{ form.submit(class="btnSubmit") }}
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

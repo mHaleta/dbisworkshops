@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>All users</title>
+        <style type="text/css">
+            .button {
+                border: 0;
+                cursor: pointer;
+                background-color: aliceblue;
+                font-size: 16pt;
+                color: black;
+
+            }
+
+            .button:hover {
+                background-color: aqua;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            table {
+                border-width: 1px;
+                border-style: solid;
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1 align="center">Реклама товарів</h1>
+        </header>
+        <div style="padding-bottom: 15px" align="center">
+            <a href="/main"><button class="button", type="button">Головна</button></a>
+            <a href="/search"><button class="button", type="button">Пошук</button></a>
+            <a href="/price_tracking"><button class="button">Відслідковування ціни</button></a>
+            <a href="/profile"><button class="button", type="button">Профіль</button></a>
+            <a href="/logout"><button class="button", type="button">Вихід</button></a>
+        </div>
+        <table cellpadding="7", align="center">
+            <tr>
+                <th>Role</th>
+                <th>Login</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Email</th>
+            </tr>
+            {%  for row in rows %}
+            <tr>
+                {% for col in row %}
+                <td>{{ col }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>

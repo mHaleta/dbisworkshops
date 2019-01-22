@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Профіль</title>
+        <style type="text/css">
+            .button {
+                border: 0;
+                cursor: pointer;
+                background-color: aliceblue;
+                font-size: 16pt;
+                color: black;
+
+            }
+
+            .button:hover {
+                background-color: aqua;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            .btnSubmit {
+                background-color: #009933;
+                font-size: 16px;
+                font-family: "Segoe UI";
+                cursor: pointer;
+                text-align: center;
+                margin-right: 20px;
+            }
+
+            .btnSubmit:hover {
+                background-color: #00cc66;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1 align="center">Реклама товарів</h1>
+        </header>
+        <div style="padding-bottom: 15px" align="center">
+            <a href="/main"><button class="button", type="button">Головна</button></a>
+            <a href="/search"><button class="button", type="button">Пошук</button></a>
+            <a href="/price_tracking"><button class="button">Відслідковування ціни</button></a>
+            <a href="/profile"><button class="button", type="button">Профіль</button></a>
+            <a href="/logout"><button class="button", type="button">Вихід</button></a>
+        </div>
+        <div style="padding-top: 20px; padding-left: 350px; font-size: 14pt">
+            First name: {{ row[0][0] }}
+        </div>
+        <div style="padding-left: 350px; font-size: 14pt">
+            Last name: {{ row[0][1] }}
+        </div>
+        <div style="padding-left: 350px; font-size: 14pt; padding-bottom: 20px">
+            Email: {{ row[0][2] }}
+        </div>
+        {% if user_admin %}
+            <div style="padding-left: 350px">
+        {% else %}
+            <div style="padding-left: 450px">
+        {% endif %}
+            <form action="/profile" method="POST">
+                {% if user_admin %}
+                    {{ form1.submit_show(class="btnSubmit") }}
+                    {{ form2.submit_del_user(class="btnSubmit") }}
+                {% endif %}
+                {{ form3.submit_profile(class="btnSubmit") }}
+                {{ form4.submit_add(class="btnSubmit") }}
+                {{ form5.submit_update(class="btnSubmit") }}
+                {{ form6.submit_advert(class="btnSubmit") }}
+            </form>
+        </div>
+    </body>
+</html>

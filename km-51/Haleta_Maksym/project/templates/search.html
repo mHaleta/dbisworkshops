@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Пошук</title>
+        <style type="text/css">
+            .button {
+                border: 0;
+                cursor: pointer;
+                background-color: aliceblue;
+                font-size: 16pt;
+
+            }
+
+            .button:hover {
+                background-color: aqua;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            .form {
+                width: 350px;
+                margin-right: 10px;
+                margin-left: 10px;
+            }
+
+            .btnSubmit {
+                background-color: #009933;
+                cursor: pointer;
+                border: 0;
+                font-size: 12pt;
+            }
+
+            .btnSubmit:hover {
+                background-color: #00cc66;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1 align="center">Реклама товарів</h1>
+        </header>
+        <div align="center">
+            <a href="/main"><button class="button", type="button">Головна</button></a>
+            <a href="/search"><button class="button", type="button">Пошук</button></a>
+            <a href="/price_tracking"><button class="button">Відслідковування ціни</button></a>
+            <a href="/profile"><button class="button", type="button">Профіль</button></a>
+            <a href="/logout"><button class="button", type="button">Вихід</button></a>
+        </div>
+        <table cellpadding="10px" style="margin-top: 20px" align="center">
+            <tr>
+                <td>
+                    <p style="font-size: 16pt; font-family: 'Segoe UI'">Пошук продукту:</p>
+                </td>
+                <td>
+                    <form action="/search" method="POST" name="form_1">
+                        {{ form_1.hidden_tag() }}
+
+                        {{ form_1.search_prod(class="form", placeholder="Enter product name to search") }}
+                        {{ form_1.submit(class="btnSubmit") }}
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p style="font-size: 16pt; font-family: 'Segoe UI'">Пошук постачальника:</p>
+                </td>
+                <td>
+                    <form action="/search" method="POST" name="form_2">
+                        {{ form_2.hidden_tag() }}
+
+                        {{ form_2.search_vendor(class="form", placeholder="Enter vendor to search his products") }}
+                        {{ form_2.submit(class="btnSubmit") }}
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

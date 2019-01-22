@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Registration</title>
+        <style type="text/css">
+            .reg {
+                padding-top: 100px;
+            }
+
+            p {
+                font-size: 20pt;
+                font-family: "Segoe Print";
+            }
+
+            .padd {
+                padding-bottom: 15px;
+            }
+
+            .btn-padd {
+                padding-top: 20px;
+            }
+
+            .btnSubmit {
+                background-color: #0066cc;
+                font-size: 16px;
+                font-family: "Segoe UI";
+                cursor: pointer;
+                text-align: center;
+                margin-right: 20px;
+            }
+
+            .btnSignUp {
+                background-color: #00cc66;
+                font-size: 16px;
+                font-family: "Segoe UI";
+                cursor: pointer;
+                text-align: center;
+                margin-left: 20px;
+            }
+
+            a {
+                text-decoration: none;
+                color: black;
+            }
+
+            a:hover {
+                color: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="reg" align="center">
+            <form action="/registration" method="POST">
+                {{ form.hidden_tag() }}
+                <p>Registration</p>
+                {% for message in get_flashed_messages() %}
+                    {% for msg in message.values() %}
+                        <div class="flash">{{ msg[0] }}</div>
+                    {% endfor %}
+                {% endfor %}
+                <div style="padding-top: 20px", class="padd">
+                    {{ form.first_name(placeholder="First name *") }}
+                </div>
+                <div class="padd">
+                    {{ form.last_name(placeholder="Last name *") }}
+                </div>
+                <div class="padd">
+                    {{ form.email(placeholder="Email *") }}
+                </div>
+                <div class="padd">
+                    {{ form.login(placeholder="Login *") }}
+                </div>
+                <div class="padd">
+                    {{ form.password(placeholder="Password *") }}
+                </div>
+                <div class="padd">
+                    {{ form.confirm_password(placeholder="Confirm password *") }}
+                </div>
+
+                <div class="btn-padd">
+                    {{ form.submit(class="btnSubmit") }}
+                </div>
+
+                <div style="padding-top: 10px; margin-left: -20px", align="center">
+                    <a href="/login">Back to log in</a>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
